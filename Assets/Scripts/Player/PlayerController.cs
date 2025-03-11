@@ -24,6 +24,12 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody rigidbody;
 
+    // 속도 증가 관련 변수
+    private bool isSpeedBoosted = false;   // 속도 부스트 여부
+    private float speedBoostMultiplier = 1f; // 속도 부스트 배수
+    private float speedBoostDuration = 5f;   // 속도 부스트 지속 시간
+    private Coroutine speedBoostCoroutine;   // 속도 부스트 코루틴
+
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
@@ -53,7 +59,7 @@ public class PlayerController : MonoBehaviour
     void Move()
     {
         Vector3 dir = transform.forward * curMovementInput.y + transform.right * curMovementInput.x;
-        dir *= moveSpeed;
+        dir *= moveSpeed * speedBoostMultiplier;  // 속도 부스트를 고려한 이동
 
         // Y축 (수직 방향) 속도는 중력에 의해 자연스럽게 결정되도록, x, z 속도만 수정
         dir.y = rigidbody.velocity.y;
@@ -64,7 +70,7 @@ public class PlayerController : MonoBehaviour
     void CameraLook()
     {
         camCurXRot += mouseDelta.y * lookSensitivity;
-        camCurXRot  = Mathf.Clamp(camCurXRot, minXLook, maxXLook);
+        camCurXRot = Mathf.Clamp(camCurXRot, minXLook, maxXLook);
         cameraContainer.localEulerAngles = new Vector3(-camCurXRot, 0, 0);
 
         transform.eulerAngles += new Vector3(0, mouseDelta.x * lookSensitivity, 0);
@@ -90,10 +96,36 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if(context.phase == InputActionPhase.Started && IsGrounded())
+        if (context.phase == InputActionPhase.Started && IsGrounded())
         {
             rigidbody.AddForce(Vector2.up * jumpPower, ForceMode.Impulse);
         }
+    }
+
+    // 속도 부스트 아이템 사용
+    public void UseSpeedItem(SpeedItem speedItem)
+    {
+        if (!isSpeedBoosted)
+        {
+            // 기존에 속도 부스트가 적용 중이지 않다면, 새로 시작
+            if (speedBoostCoroutine != null)
+            {
+                StopCoroutine(speedBoostCoroutine);
+            }
+
+            speedBoostCoroutine = StartCoroutine(SpeedBoostCoroutine(speedItem));
+        }
+    }
+
+    private IEnumerator SpeedBoostCoroutine(SpeedItem speedItem)
+    {
+        isSpeedBoosted = true;
+        speedBoostMultiplier = 1 + speedItem.speedBoost;  // 속도 증가 배수
+
+        yield return new WaitForSeconds(speedItem.duration);  // 지정된 시간 후
+
+        speedBoostMultiplier = 1f;  // 속도 원래대로 되돌리기
+        isSpeedBoosted = false;
     }
 
     bool IsGrounded()
@@ -106,7 +138,7 @@ public class PlayerController : MonoBehaviour
             new Ray (transform.position + (-transform.right * 0.2f) + (transform.up * 0.01f), Vector3.down)
         };
 
-        for(int i = 0; i<rays.Length; i++)
+        for (int i = 0; i < rays.Length; i++)
         {
             if (Physics.Raycast(rays[i], 0.1f, groundLayerMask))
             {
@@ -115,5 +147,4 @@ public class PlayerController : MonoBehaviour
         }
         return false;
     }
-
 }

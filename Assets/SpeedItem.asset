@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: SpeedItem
   description: Increases speed for 5 seconds
-  speedBoost: 10
+  speedBoost: 2
   duration: 5
