@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class Raycast : MonoBehaviour
 {
     public TextMeshProUGUI infoText;            // UI 텍스트 객체
-    public float maxRaycastDistance = 150f; // Raycast 최대 거리 설정
+    public float maxRaycastDistance = 120f; // Raycast 최대 거리 설정
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +24,10 @@ public class Raycast : MonoBehaviour
             {
                 infoText.text = "This is a campfire. I think it's going to hurt.";
 
+            }
+            else if (hit.transform.CompareTag("JumpPad"))
+            {
+                infoText.text = "It's a jumping platform. Let's go up.";
             }
             else
             {
