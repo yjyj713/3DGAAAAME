@@ -827,6 +827,7 @@ GameObject:
   - component: {fileID: 750192092}
   - component: {fileID: 750192091}
   - component: {fileID: 750192090}
+  - component: {fileID: 750192094}
   m_Layer: 0
   m_Name: JumpPad
   m_TagString: JumpPad
@@ -920,6 +921,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &750192094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 750192089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 218faa3d6e6fb6b4c8b5176d5053547e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpForce: 200
 --- !u!1 &765810110
 GameObject:
   m_ObjectHideFlags: 0
@@ -1350,7 +1364,7 @@ GameObject:
   - component: {fileID: 1236933447}
   m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
