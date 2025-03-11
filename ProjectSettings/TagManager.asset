@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Campfire
   - JumpPad
+  - SpeedItem
   layers:
   - Default
   - TransparentFX

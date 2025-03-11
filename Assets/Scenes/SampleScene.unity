@@ -996,7 +996,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1229,6 +1229,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: JumpPad (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8830086429192688758, guid: 063d8e4673b161748b183bb9a7f30034, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1285,6 +1289,10 @@ PrefabInstance:
     - target: {fileID: 8830086429192688758, guid: 063d8e4673b161748b183bb9a7f30034, type: 3}
       propertyPath: m_Name
       value: JumpPad (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8830086429192688758, guid: 063d8e4673b161748b183bb9a7f30034, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2223,6 +2231,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5028205032884178447, guid: bcfa8dcb2a0047b43bce186a600f4eab, type: 3}
       propertyPath: m_Name
+      value: SpeedItem
+      objectReference: {fileID: 0}
+    - target: {fileID: 5028205032884178447, guid: bcfa8dcb2a0047b43bce186a600f4eab, type: 3}
+      propertyPath: m_TagString
       value: SpeedItem
       objectReference: {fileID: 0}
     - target: {fileID: 5670945705863734608, guid: bcfa8dcb2a0047b43bce186a600f4eab, type: 3}

@@ -29,6 +29,10 @@ public class Raycast : MonoBehaviour
             {
                 infoText.text = "It's a jumping platform. Let's go up.";
             }
+            else if (hit.transform.CompareTag("SpeedItem"))
+            {
+                infoText.text = "This is a speed item. The speed of movement increases for a while..";
+            }
             else
             {
                 infoText.text = "";
